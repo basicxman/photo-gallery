@@ -1,0 +1,66 @@
+@import "styling.css.scss";
+
+.image {
+  width: 150px;
+  float: left;
+  padding: 15px;
+  margin: 15px 15px 0px 0px;
+  background: $home-box;
+  border: 1px solid darken($home-box, 10%);
+  @include border-radius(5px);
+
+  &:hover, &:focus, &:active {
+    border-color: rgba(82, 168, 236, 0.8);
+    $shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 0px 8px rgba(82, 168, 236, 0.6);
+    @include box-shadow($shadow);
+  }
+}
+
+table.image-data {
+  width: 100%;
+  border-collapse: separate;
+  *border-collapse: collapse;
+  border: 1px solid $border;
+  border-spacing: 0px;
+  @include border-radius($sidebar-radius);
+
+  td {
+    padding: 10px 10px 9px 9px;
+  }
+
+  td + td {
+    border-left: 1px solid $border;
+  }
+
+  tr + tr td {
+    border-top: 1px solid $border;
+  }
+
+  tbody tr:first-child td:first-child {
+    @include border-radius($sidebar-radius 0px 0px 0px);
+  }
+
+  tbody tr:last-child td:first-child {
+    @include border-radius(0px 0px 0px $sidebar-radius);
+  }
+
+  tbody tr:first-child td:last-child {
+    @include border-radius(0px $sidebar-radius 0px 0px);
+  }
+
+  tbody tr:last-child td:last-child {
+    @include border-radius(0px 0px $sidebar-radius 0px);
+  }
+
+  tr {
+    background-color: #fff;
+  }
+  tbody {
+    tr:nth-child(odd) {
+      background-color: $odd;
+    }
+    tr:hover {
+      background-color: $odd;
+    }
+  }
+}

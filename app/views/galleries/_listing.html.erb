@@ -1,0 +1,8 @@
+<div id="gallery-sidebar">
+  <ul>
+    <li><b><%= link_to "Galleries", galleries_path %></b></li>
+    <% @galleries.each do |gallery| %>
+      <li><%= link_to gallery.title, gallery_path(gallery) %></li>
+    <% end %>
+  </ul>
+</div>

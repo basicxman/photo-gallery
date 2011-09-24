@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Photo Gallery</title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans|Droid+Sans+Mono" type="text/css" />
+</head>
+<body>
+
+<div id="header">
+  <h2><%= link_to "Photo Gallery", root_path %></h2>
+  <h3><%= yield :title %></h3>
+  <div class="right">
+    <% if user %>
+      <%= link_to "New Image", new_image_path, :class => "button" %>
+    <% end %>
+    <%= render :partial => "sessions/buttons" %>
+  </div>
+</div>
+
+<div id="content">
+  <%= yield %>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,185 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require_tree . 
+*/
+
+@import "styling.css.scss";
+
+body, div, span, table, tbody, thead, tr, td, th, h1, h2, h3, h4, p, pre, a, blockquote, input, textarea {
+  margin:  0px;
+  padding: 0px;
+}
+
+body {
+  font-family: "Droid Sans", Arial, sans-serif;
+}
+
+a:link { color: $link-colour; text-decoration: none; }
+a:visited { color: darken($link-colour, 15%); }
+a:active, a:hover  { color: darken($link-colour, 10%); text-decoration: underline; }
+
+#notice {
+  color: #f00;
+  margin-bottom: 20px;
+}
+
+#error-box {
+  margin-top: -10px;
+  font-size: 90%;
+  span { color: #f00; }
+  ul {
+    padding: 0px;
+    list-style: none;
+  }
+}
+
+div#header {
+  position: fixed;
+  z-index:  1000;
+  top:  0px;
+  left: 0px;
+  height: 30px;
+  width: 100%;
+  background-color: #222;
+  @include background-gradient(#333, #222);
+  @include box-shadow(inset 0 -1px 0 rgba(0, 0, 0, 0.1));
+  color: #eee;
+
+  padding: 6px 15px;
+
+  h2, h3 {
+    font-weight: normal;
+    display: inline;
+    a {
+      color: #eee;
+      text-decoration: none;
+    }
+  }
+
+  h2 {
+    font-size: 24px;
+    margin-right: 10px;
+  }
+
+  h3 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  div.right {
+    float: right;
+    margin-right: 20px;
+    a.button {
+      float: left;
+      margin: 0px;
+      padding: 5px 10px 5px 0px;
+      height: 100%;
+      font-weight: 300;
+      color: #88f;
+      display: block;
+    }
+  }
+}
+
+div#content {
+  margin-top: $content-offset;
+}
+
+.home-box {
+  background: $home-box;
+  border: 1px solid darken($home-box, 10%);
+  margin-right: 10px;
+  padding: 20px;
+  @include border-radius(5px);
+}
+
+.home-box + .home-box {
+  margin-top: 15px;
+}
+
+@mixin field {
+  $shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  @include box-shadow($shadow);
+  @include border-radius(3px);border: 1px solid #ccc;
+}
+
+
+.field {
+  .field_with_errors input[type="text"], .field_with_errors textarea {
+    $shadow: inset 0px 2px 8px rgba(255, 0, 0, 0.5);
+    @include box-shadow($shadow);
+  }
+
+  input[type="text"], input[type="password"] {
+    width: 270px;
+    height: 18px;
+    padding: 4px;
+    font-size: 13px;
+    color: $input-fg;
+
+    @include field;
+  }
+
+  select {
+    cursor: pointer;
+    padding: 10px;
+    width: 270px;
+    padding: 4px;
+    font-size: 13px;
+    height: 27px;
+    border: 1px solid #ccc;
+    @include border-radius(4px);
+  }
+
+  input[type="submit"] {
+    @include button;
+  }
+
+  textarea {
+    width: 270px;
+    height: 54px;
+    padding: 4px;
+    font-size: 13px;
+    color: $input-fg;
+    @include field;
+  }
+
+  a.button {
+    @include button;
+    &.delete { color: #f00; }
+  }
+
+  label {
+    margin-right: 10px;
+  }
+}
+
+.fl {
+  float: left;
+  margin-right: 30px;
+}
+
+.centered {
+  margin: 0 auto;
+  &.medium {
+    width: 550px;
+  }
+
+  &.large {
+    width: 960px;
+  }
+
+  table {
+    width: 100%;
+  }
+  input[type="text"], input[type="password"], textarea {
+    width: 95%;
+  }
+  textarea {
+    height: 100px;
+  }
+  input[type="submit"] { margin-right: 10px; }
+}

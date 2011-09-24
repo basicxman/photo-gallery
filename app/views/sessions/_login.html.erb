@@ -1,0 +1,21 @@
+<%= form_tag sessions_path do %>
+  <% if params[:landing_page] %>
+    <%= hidden_field_tag :landing_page, params[:landing_page] %>
+  <% end %>
+
+  <table border="0">
+    <tr class="field">
+      <td><%= label_tag :username %></td>
+      <td><%= text_field_tag :username, params[:username] %></td>
+    </tr>
+    <tr class="field">
+      <td><%= label_tag :password %></td>
+      <td><%= password_field_tag :password, params[:password] %></td>
+    </tr>
+    <tr class="field">
+      <td colspan=2">
+        <div style="float: right;"><%= submit_tag "Log in!" %></div>
+      </td>
+    </tr>
+  </table>
+<% end %>

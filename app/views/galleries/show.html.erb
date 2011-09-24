@@ -1,0 +1,29 @@
+<% content_for :title, "Viewing " + @gallery.title %>
+
+<%= render :partial => "listing", :locals => { :galleries => @galleries } %>
+
+<div id="gallery-content">
+  <% if user %>
+    <div class="home-box">
+      <% if flash[:notice] %>
+        <div id="notice"><%= flash[:notice] %></div>
+      <% end %>
+
+      <% if @gallery.errors.any? %>
+        <div id="error-box">
+          <span><%= @gallery.errors.count %> <%= @gallery.errors.count == 1 ? "error was" : "errors were" %> encountered.</span>
+          <ul>
+            <% @gallery.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="fl"><%= render :partial => "edit", :locals => { :gallery => @gallery } %></div>
+      <div class="fl"><%= render :partial => "new",  :locals => { :new_gallery => @new_gallery } %></div>
+      <div style="clear: both;"></div>
+    </div>
+  <% end %>
+  <%= render :partial => "gallery", :locals => { :gallery => @gallery } %>
+</div>

@@ -1,0 +1,39 @@
+<div id="edit-gallery-form">
+  <%= form_for @gallery, :multipart => true do |f| %>
+    <table border="0">
+      <tr class="field">
+        <td><%= f.label :title %></td>
+        <td><%= f.text_field :title %></td>
+      </tr>
+      <tr class="field">
+        <td><%= f.label :description %></td>
+        <td><%= f.text_area :description %></td>
+      </tr>
+      <tr class="field">
+        <td><%= link_to "Add New Images", "javascript:void(0)", :id => "add-new-images", :class => "button" %></td>
+        <td>
+          <div style="float: right;">
+            <%= link_to "Delete Gallery", gallery_path(gallery), :method => :delete, :confirm => "Are you sure?", :class => "button delete" %>
+            <%= f.submit "Update Gallery" %>
+          </div>
+        </td>
+      </tr>
+      <tr class="field">
+        <td id="new-images" colspan="2">
+          <div>
+            <br />
+            <%= f.fields_for :images do |image| %>
+              <% if image.object.new_record? %>
+                <div class="image-field-group">
+                  <%= image.hidden_field :user_id, :value => user.id %>
+                  <%= image.file_field :image %>
+                  <%= image.text_field :title %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+    </table>
+  <% end %>
+</div>

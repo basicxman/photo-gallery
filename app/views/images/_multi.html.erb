@@ -1,0 +1,9 @@
+<div id="gallery-view">
+  <% @images.each do |image| %>
+    <% unless image.new_record? %>
+      <div class="image">
+        <%= link_to image_tag(image.image.url(:thumb)), image_path(image) %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

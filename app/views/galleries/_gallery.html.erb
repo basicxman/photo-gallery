@@ -1,0 +1,9 @@
+<div class="home-box">
+  <p>
+  <%= link_to @gallery.title, gallery_path(@gallery) %> by <i><%= @gallery.user.username %></i><br /><br />
+  <%=m @gallery.description %>
+  </p>
+</div>
+
+<% @images = @gallery.images %>
+<%= render :partial => "images/multi" %>

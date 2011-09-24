@@ -1,0 +1,46 @@
+<% content_for :title, "Viewing " + @image.title %>
+
+<div class="centered medium">
+  <div class="home-box">
+    <%= link_to image_tag(@image.image.url(:medium)), @image.image.url, :target => "_blank" %>
+  </div>
+
+  <% if user %>
+    <div class="home-box">
+      <%= render :partial => "form", :locals => { :allow_delete => true } %>
+    </div>
+  <% end %>
+
+  <div class="home-box">
+    <table class="image-data">
+      <tr>
+        <td>Owner</td>
+        <td><%= @image.user.username %></td>
+      </tr>
+      <tr>
+        <td>Gallery</td>
+        <td><%= link_to @image.gallery.title, gallery_path(@image.gallery) %></td>
+      </tr>
+      <tr>
+        <td>Title</td>
+        <td><%= @image.title %></td>
+      </tr>
+      <tr>
+        <td>Description</td>
+        <td><%=m @image.description %></td>
+      </tr>
+      <tr class="field">
+        <td>Permalink</td>
+        <td><%= text_field_tag :permalink, path(@image.image.url) %></td>
+      </tr>
+      <tr class="field">
+        <td>Medium</td>
+        <td><%= text_field_tag :permalink_medium, path(@image.image.url(:medium)) %></td>
+      </tr>
+      <tr class="field">
+        <td>Thumbnail</td>
+        <td><%= text_field_tag :permalink_thumb, path(@image.image.url(:thumb)) %></td>
+      </tr>
+    </table>
+  </div>
+</div>

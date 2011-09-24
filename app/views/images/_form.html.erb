@@ -1,0 +1,48 @@
+<% if flash[:notice] %>
+  <div id="notice"><%= flash[:notice] %></div>
+<% end %>
+
+<% if @image.errors.any? %>
+  <div id="error-box">
+    <span><%= @image.errors.count %> <%= @image.errors.count == 1 ? "error was" : "errors were" %> encountered.</span>
+    <ul>
+      <% @image.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @image, :multipart => true do |f| %>
+  <table border="0">
+    <tr class="field">
+      <td><%= f.label :title %></td>
+      <td><%= f.text_field :title %></td>
+    </tr>
+    <tr class="field">
+      <td><%= f.label :description %></td>
+      <td><%= f.text_area :description %></td>
+    </tr>
+    <tr class="field">
+      <td><%= f.label :gallery_id %></td>
+      <td><%= f.collection_select :gallery_id, Gallery.all, :id, :title %></td>
+    </tr>
+    <tr class="field">
+      <td><%= f.label :image %></td>
+      <td><%= f.file_field :image %></td>
+    </tr>
+    <tr class="field">
+      <td colspan="2">
+        <div style="float: right;">
+          <% if params[:action] == "new" or params[:action] == "create" %>
+            <% content_for :title, "Create a new image" %>
+            <%= submit_tag "Submit Image" %>
+          <% else %>
+            <%= link_to "Delete Image", image_path(@image), :method => :delete, :confirm => "Are you sure?", :class => "button delete" %>
+            <%= submit_tag "Update Image" %>
+          <% end %>
+        </div>
+      </td>
+    </tr>
+  </table>
+<% end %>

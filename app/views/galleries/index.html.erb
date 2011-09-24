@@ -1,0 +1,19 @@
+<% content_for :title, "All Galleries" %>
+
+<%= render :partial => "listing", :locals => { :galleries => @galleries } %>
+
+<div id="gallery-content">
+  <div class="home-box">
+    <p>There <%= @galleries.length > 1 ? "are" : "is" %> currently <b><%= pluralize(@galleries.length, "gallery") %></b> and <b><%= pluralize(Image.count, "image") %></b> in this photo gallery.</p>
+    <% if user %>
+      <br />
+      <%= render :partial => "new" %>
+    <% end %>
+  </div>
+
+  <% @galleries.each do |gallery| %>
+    <div class="image">
+      <%= link_to image_tag(gallery.thumbnail), gallery_path(gallery), :title => gallery.title %>
+    </div>
+  <% end %>
+</div>
