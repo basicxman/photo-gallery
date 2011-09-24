@@ -38,7 +38,7 @@ a:active, a:hover  { color: darken($link-colour, 10%); text-decoration: underlin
 
 div#header {
   position: fixed;
-  z-index:  1000;
+  z-index:  2;
   top:  0px;
   left: 0px;
   height: 30px;
@@ -182,4 +182,50 @@ div#content {
     height: 100px;
   }
   input[type="submit"] { margin-right: 10px; }
+}
+
+div#lightbox {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  min-height: 100%;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+
+  div#lightbox-header {
+    width: 960px;
+    margin: 50px auto;
+    div#lightbox-close-button {
+      cursor: pointer;
+      margin-top: -10px;
+      float: right;
+      font-family: "Droid Sans Mono";
+      padding: 9px 10px 9px 8px;
+      background-color: #000;
+      color: #fff;
+      font-weight: 800;
+      font-size: 16px;
+      width: 8px;
+      height: 8px;
+      line-height: 7px;
+      border: 1px solid #fff;
+      @include box-shadow(1px 1px 5px rgba(255, 255, 255, 0.3));
+      @include border-radius(20px);
+    }
+  }
+
+  div#lightbox-content {
+    width: 960px;
+    margin: 0px auto;
+    margin-bottom: 50px;
+    z-index: 1000;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 30px;
+    @include border-radius(5px);
+    @include box-shadow(6px 6px 16px rgba(0, 0, 0, 0.8));
+    overflow: auto;
+  }
 }

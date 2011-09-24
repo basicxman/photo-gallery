@@ -4,7 +4,7 @@
 
 <div id="gallery-content">
   <div class="home-box">
-    <p>There <%= @galleries.length > 1 ? "are" : "is" %> currently <b><%= pluralize(@galleries.length, "gallery") %></b> and <b><%= pluralize(Image.count, "image") %></b> in this photo gallery.</p>
+    <p>There <%= @galleries.length > 1 ? "are" : "is" %> currently <b id="gallery-quantity"><%= pluralize(@galleries.length, "gallery") %></b> and <b><%= pluralize(Image.count, "image") %></b> in this photo gallery.</p>
     <% if user %>
       <br />
       <%= render :partial => "new" %>

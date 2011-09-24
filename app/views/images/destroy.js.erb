@@ -1,0 +1,6 @@
+if ($("#lightbox").css("display") == "none") {
+  window.location = "<%= gallery_path(@image.gallery) %>";
+} else {
+  closeLightbox();
+  $(".image a[href='<%= image_path(@image) %>']").parent().fadeOut();
+}

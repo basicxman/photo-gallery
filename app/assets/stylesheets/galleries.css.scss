@@ -57,7 +57,11 @@ div#gallery-sidebar {
     }
     input[type="text"] {
       padding-top: 2px;
-      width: 210px;
+      width: 200px;
+    }
+
+    .field_with_errors {
+      display: inline;
     }
   }
 }

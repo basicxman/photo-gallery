@@ -1,5 +1,5 @@
 <div id="new-gallery-form">
-  <%= form_for @new_gallery do |f| %>
+  <%= form_for @new_gallery, :remote => true do |f| %>
     <%= f.hidden_field :user_id, :value => user.id %>
     <table border="0">
       <tr class="field">

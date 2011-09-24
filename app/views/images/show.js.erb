@@ -1,0 +1,4 @@
+$("#lightbox-content").html('<div class="lightbox-image centered medium"><%=j render :partial => "show" %></div>')
+showLightbox({ width: "600px" });
+if (window.history.pushState)
+  window.history.pushState({}, "Photo Gallery | <%= @image.title %>", "<%= gallery_path(@image.gallery) + "#" + image_path(@image) %>");

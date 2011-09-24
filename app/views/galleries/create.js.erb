@@ -1,0 +1,5 @@
+$('<li><%= link_to @gallery.title, gallery_path(@gallery) %></li>').insertBefore($("#gallery-sidebar ul li:nth-child(2)"));
+if ($("#gallery-view").length == 0) {
+  $('<div class="image"><%= link_to image_tag(PhotoGallery::Application.config.missing_image), gallery_path(@gallery), :title => @gallery.title %></div>').insertAfter($("#gallery-content .image:last"));
+  $("#gallery-quantity").text("<%= pluralize(Gallery.count, "gallery") %>");
+}

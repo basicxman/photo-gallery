@@ -13,7 +13,7 @@
   </div>
 <% end %>
 
-<%= form_for @image, :multipart => true do |f| %>
+<%= form_for @image, :multipart => true, :remote => true do |f| %>
   <table border="0">
     <tr class="field">
       <td><%= f.label :title %></td>
@@ -38,7 +38,7 @@
             <% content_for :title, "Create a new image" %>
             <%= submit_tag "Submit Image" %>
           <% else %>
-            <%= link_to "Delete Image", image_path(@image), :method => :delete, :confirm => "Are you sure?", :class => "button delete" %>
+            <%= link_to "Delete Image", image_path(@image), :remote => true, :method => :delete, :confirm => "Are you sure?", :class => "button delete" %>
             <%= submit_tag "Update Image" %>
           <% end %>
         </div>

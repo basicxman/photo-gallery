@@ -17,7 +17,7 @@ class Gallery < ActiveRecord::Base
     if self.images.length > 0
       self.images.first.image.url(:thumb)
     else
-      "/im_a_banana.jpg"
+      PhotoGallery::Application.config.missing_image
     end
   end
 

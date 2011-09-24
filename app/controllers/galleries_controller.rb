@@ -20,7 +20,10 @@ class GalleriesController < ApplicationController
     else
       flash[:notice] = "Unable to create gallery."
     end
-    render :show
+    respond_to do |format|
+      format.html { render :show }
+      format.js
+    end
   end
 
   def index

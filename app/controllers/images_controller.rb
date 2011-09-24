@@ -1,4 +1,6 @@
 class ImagesController < ApplicationController
+  respond_to :js, :only => [:show]
+
   def new
     @image = Image.new(params[:image])
   end
@@ -17,7 +19,10 @@ class ImagesController < ApplicationController
   def destroy
     @image = Image.find(params[:id])
     @image.destroy
-    redirect_to gallery_path(@image.gallery)
+    respond_to do |format|
+      format.html { redirect_to gallery_path(@image.gallery) }
+      format.js
+    end
   end
 
   def update
