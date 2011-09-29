@@ -1,5 +1,52 @@
 @import "styling.css.scss";
 
+$selection-shadow-colour: rgba(213, 92, 166, 0.6);
+
+@keyframes unselected {
+  from {
+    $selection-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 0px 8px $selection-shadow-colour;
+    @include box-shadow($selection-shadow);
+  }
+  to {
+    $selection-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 0px 18px $selection-shadow-colour;
+    @include box-shadow($selection-shadow);
+  }
+}
+
+@-webkit-keyframes unselected {
+  from {
+    $selection-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 0px 8px $selection-shadow-colour;
+    @include box-shadow($selection-shadow);
+  }
+  to {
+    $selection-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 0px 18px $selection-shadow-colour;
+    @include box-shadow($selection-shadow);
+  }
+}
+
+@-moz-keyframes unselected {
+  from {
+    $selection-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 0px 8px $selection-shadow-colour;
+    @include box-shadow($selection-shadow);
+  }
+  to {
+    $selection-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 0px 18px $selection-shadow-colour;
+    @include box-shadow($selection-shadow);
+  }
+}
+
+@-ms-keyframes unselected {
+  from {
+    $selection-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 0px 8px $selection-shadow-colour;
+    @include box-shadow($selection-shadow);
+  }
+  to {
+    $selection-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 0px 18px $selection-shadow-colour;
+    @include box-shadow($selection-shadow);
+  }
+}
+
+
 .image {
   width: 150px;
   float: left;
@@ -11,9 +58,37 @@
 
   &:hover, &:focus, &:active {
     border-color: rgba(82, 168, 236, 0.8);
-    $shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 0px 8px rgba(82, 168, 236, 0.6);
+    $shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 0px 8px rgba(82, 168, 236, 0.8);
     @include box-shadow($shadow);
   }
+
+  &.selected {
+    $args: scale(1.05) rotate(2deg);
+    @include transform($args);
+    &.delete-action {
+      $shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 0px 8px rgba(255, 0, 0, 0.6);
+      @include box-shadow($shadow);
+    }
+    &.move-action {
+      $shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 0px 8px rgba(82, 168, 236, 0.6);
+      @include box-shadow($shadow);
+    }
+  }
+}
+
+.ready-for-selection {
+  @include animation(unselected, 0.5s, infinite, alternate, ease-in-out);
+}
+
+#gallery-sidebar.ready-for-selection {
+  li {
+    cursor: pointer;
+  }
+}
+
+#gallery-sidebar li.selected {
+  @include transform(scale(1.1));
+  padding-left: 20px;
 }
 
 table.image-data {

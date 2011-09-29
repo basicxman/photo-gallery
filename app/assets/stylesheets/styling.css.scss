@@ -21,6 +21,32 @@
   box-shadow: $args;
 }
 
+@mixin transform($args) {
+  -webkit-transform: $args;
+  -moz-transform: $args;
+  -o-transform: $args;
+  -ms-transform: $args;
+  transform: $args;
+}
+
+@mixin animation($name, $duration, $iteration, $direction, $timing) {
+  -webkit-animation-name: $name;
+  -webkit-animation-duration: $duration;
+  -webkit-animation-iteration-count: $iteration;
+  -webkit-animation-direction: $direction;
+  -webkit-animation-timing-function: $timing;
+  -moz-animation-name: $name;
+  -moz-animation-duration: $duration;
+  -moz-animation-iteration-count: $iteration;
+  -moz-animation-direction: $direction;
+  -moz-animation-timing-function: $timing;
+  -ms-animation-name: $name;
+  -ms-animation-duration: $duration;
+  -ms-animation-iteration-count: $iteration;
+  -ms-animation-direction: $direction;
+  -ms-animation-timing-function: $timing;
+}
+
 @mixin button {
   cursor: pointer;
   background-color: #e6e6e6;

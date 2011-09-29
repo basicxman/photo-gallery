@@ -1,5 +1,5 @@
 class ImagesController < ApplicationController
-  respond_to :js, :only => [:show]
+  respond_to :js, :only => [:show, :batch_destroy]
 
   def new
     @image = Image.new(params[:image])
@@ -25,6 +25,17 @@ class ImagesController < ApplicationController
     end
   end
 
+  def batch_destroy
+    @images = Image.find(get_batch)
+    @images.each(&:destroy)
+  end
+
+  def batch_move
+    @images = Image.find(get_batch)
+    @gallery = @images.first.gallery
+    @images.each { |i| i.update_attribute(:gallery_id, params[:destination].to_i) }
+  end
+
   def update
     @image = Image.find(params[:id])
     if @image.update_attributes(params[:image])
@@ -41,5 +52,11 @@ class ImagesController < ApplicationController
 
   def index
     @images = Image.latest_first
+  end
+
+  private
+
+  def get_batch
+    params[:batch].split(",").map { |i| i.to_i }
   end
 end

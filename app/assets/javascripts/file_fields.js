@@ -22,19 +22,6 @@ function addFileField() {
 }
 
 $(function() {
-  if ($("#new-images .field_with_errors").length == 0 && $("#new-images").length >= 1) {
-    $("#new-images").children("div").hide();
-    $("#edit-gallery-form .image-field-group").each(function() { $(this).hide(); });
-    $("#edit-gallery-form .image-field-group:first").show();
-    $num_images_displayed = 1;
-    $num_images_available = $("#edit-gallery-form .image-field-group").length;
-    $image_id = Number($("#edit-gallery-form .image-field-group:last input:first").attr("name").match(/\[([0-9]+)\]/)[1]);
-    $("#edit-gallery-form .image-field-group input:file").live("change", function() {
-      if (numberOfFilesSelected() == $num_images_displayed)
-        addFileField();
-    });
-  }
-
   $("#add-new-images").click(function() {
     $("#new-images").children("div").slideToggle();
   });
@@ -47,4 +34,17 @@ $(function() {
     if ($(this).val() == "Image title...")
       $(this).val("");
   });
+
+  if ($("#new-images .field_with_errors").length == 0 && $("#new-images").length >= 1) {
+    $("#new-images").children("div").hide();
+    $("#edit-gallery-form .image-field-group").each(function() { $(this).hide(); });
+    $("#edit-gallery-form .image-field-group:first").show();
+    $num_images_displayed = 1;
+    $num_images_available = $("#edit-gallery-form .image-field-group").length;
+    $image_id = Number($("#edit-gallery-form .image-field-group:last input:first").attr("name").match(/\[([0-9]+)\]/)[1]);
+    $("#edit-gallery-form .image-field-group input:file").live("change", function() {
+      if (numberOfFilesSelected() == $num_images_displayed)
+        addFileField();
+    });
+  }
 });

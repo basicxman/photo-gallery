@@ -1,0 +1,5 @@
+<% @images.each do |image| %>
+  $(".image a[href='<%= image_path(image) %>']").parent().fadeOut();
+<% end %>
+
+$("#<%= dom_id(@images.first.gallery) %>").text("<%= @images.length %>");

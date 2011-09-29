@@ -2,7 +2,11 @@
   <ul>
     <li><b><%= link_to "Galleries", galleries_path %></b></li>
     <% @galleries.each do |gallery| %>
-      <li><%= link_to gallery.title, gallery_path(gallery) %></li>
+      <li>
+        <%= link_to gallery_path(gallery) do %>
+          <%= gallery.title %> (<%= content_tag :span, gallery.images.count, :id => dom_id(gallery) %>)
+        <% end %>
+      </li>
     <% end %>
   </ul>
 </div>

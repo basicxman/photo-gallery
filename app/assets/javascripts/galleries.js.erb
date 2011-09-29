@@ -1,0 +1,105 @@
+function allowBatchSelection() {
+  $(".image").each(function() { $(this).addClass("ready-for-selection"); });
+  $("#cancel-image-action").fadeIn();
+  $("#execute-actions").fadeIn();
+}
+
+function reselectSidebar(elm) {
+  $("#gallery-sidebar li.selected").removeClass("selected");
+  if (elm) $(elm).toggleClass("selected");
+  return false;
+}
+
+function removeCurrentSelections() {
+  $(".image").each(function() {
+    $(this).removeClass("ready-for-selection");
+    $(this).removeClass("selected");
+    $(this).removeClass($selection_mode + "-action");
+  });
+  $("#gallery-sidebar").removeClass("ready-for-selection");
+  reselectSidebar();
+}
+
+function initiateBatchMode(mode) {
+  removeCurrentSelections();
+  allowBatchSelection();
+  $selection_mode = mode;
+  return false;
+}
+
+function getBatchIds() {
+  var ret = "";
+  $(".image.selected").each(function() {
+    ret += $(this).attr("id").substring(6) + ",";
+  });
+  return ret;
+}
+
+function getTargetGallery() {
+  return $("#gallery-sidebar li.selected span").attr("id").substring(8);
+}
+
+function batchMove() {
+  $.post("/images/batch_move", { "batch": getBatchIds(), "destination": getTargetGallery(), "_method": "put" });
+}
+
+function batchDelete() {
+  $.post("/images/batch_destroy", { "batch": getBatchIds(), "_method": "delete" });
+}
+
+function completeBatchMode() {
+  $selection_mode = false;
+  removeCurrentSelections();
+  $("#cancel-image-action").fadeOut();
+  $("#execute-actions").fadeOut();
+}
+
+$(function() {
+  $selection_mode = false;
+
+  if ($("#cancel-image-action").length > 0) {
+    $("#cancel-image-action").hide();
+    $("#execute-actions").hide();
+    $("#move-images").show();
+    $("#delete-images").show();
+  }
+
+  $("#move-images").click(function() {
+    $("#gallery-sidebar").addClass("ready-for-selection");
+    initiateBatchMode("move");
+    return false;
+  });
+
+  $("#delete-images").click(function() {
+    return initiateBatchMode("delete");
+  });
+
+  $("#execute-actions").click(function() {
+    if ($selection_mode == "move") {
+      batchMove();
+    } else if ($selection_mode == "delete") {
+      batchDelete();
+    }
+    completeBatchMode();
+    return false;
+  });
+
+  $("#cancel-image-action").click(function() {
+    completeBatchMode();
+    return false;
+  });
+
+  $("#gallery-sidebar li").click(function() {
+    if ($selection_mode !== false) return reselectSidebar(this);
+  });
+
+  $(".image").click(function() {
+    if ($selection_mode !== false) {
+      $(this).toggleClass("ready-for-selection")
+      $(this).toggleClass("selected");
+      $(this).toggleClass($selection_mode + "-action");
+      return false;
+    }
+  });
+  
+});

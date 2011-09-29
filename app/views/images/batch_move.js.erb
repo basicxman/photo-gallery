@@ -1,0 +1,6 @@
+<% @images.each do |image| %>
+  $(".image a[href='<%= image_path(image) %>']").parent().fadeOut();
+<% end %>
+
+$("#<%= dom_id(@gallery) %>").text("<%= @gallery.images.count %>");
+$("#<%= dom_id(@images.first.gallery) %>").text("<%= @images.first.gallery.images.count %>");

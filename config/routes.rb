@@ -4,7 +4,12 @@ PhotoGallery::Application.routes.draw do
 
   resources :sessions, :only => [:new, :create, :destroy]
   resources :galleries
-  resources :images
+  resources :images do
+    collection do
+      delete :batch_destroy
+      put :batch_move
+    end
+  end
 
   root :to => "galleries#index"
 

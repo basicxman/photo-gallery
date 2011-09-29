@@ -7,3 +7,13 @@
 
 <% @images = @gallery.images %>
 <%= render :partial => "images/multi" %>
+
+<% if user %>
+  <br />
+  <div class="home-box">
+    <span class="field"><%= link_to "Move Images", "",   :id => "move-images",         :class => "button" %></span>
+    <span class="field"><%= link_to "Delete Images", "", :id => "delete-images",       :class => "button delete" %></span>
+    <span class="field"><%= link_to "Execute", "",       :id => "execute-actions",     :class => "button" %></span>
+    <span class="field"><%= link_to "Cancel", "",        :id => "cancel-image-action", :class => "button" %></span>
+  </div>
+<% end %>

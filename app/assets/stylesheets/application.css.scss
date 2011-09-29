@@ -106,6 +106,9 @@ div#content {
   @include border-radius(3px);border: 1px solid #ccc;
 }
 
+span.field .button {
+  display: none;
+}
 
 .field {
   .field_with_errors input[type="text"], .field_with_errors textarea {
